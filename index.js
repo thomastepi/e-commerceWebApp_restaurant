@@ -150,6 +150,7 @@ app.post("/place_order", (req, res)=>{
     var cost = req.session.total;
     var status = "not paid";
     var date = new Date();
+    var item_ids = "";
 
     var con = mysql.createConnection({
         host: "localhost",
@@ -158,16 +159,39 @@ app.post("/place_order", (req, res)=>{
         database: "my_db"
     });
 
+    var cart = req.session.cart;
+    for(let i=0; i<cart.lenght; i++){
+        item_ids = item_ids + " " + cart[i].id;
+    }
+
     con.connect((err)=>{
         if(err){
             console.log(err);
         } else {
-            var query = "INSERT INTO orders(cost, fname, lname, email, status, address, address2, city, province, postal_code, phone, date) VALUES?";
-            var values = [cost, fname, lname, email, phone, address, address2, city, province, postal_code, status, date];
-
+            var query = "INSERT INTO orders(cost, fname, lname, email, status, address, address2, city, province, postal_code, phone, date, item_ids) VALUES?";
+            var values = [
+                [cost, fname, lname, email, status, address, address2, city, province, postal_code, phone, date, item_ids]
+            ];
+            con.query(query,[values],(err, result)=>{
+                if(err){
+                    console.log(err)
+                } else {
+                    res.redirect("/payment");
+                }
+                
+            })
         }
     })
 })
+
+app.get("/payment", (req, res)=>{
+    res.render("pages/payment")
+})
+
+app.get("/login", (req, res)=>{
+    res.render("pages/signin")
+})
+
 
 
 

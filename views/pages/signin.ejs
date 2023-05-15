@@ -1,156 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<title>Login Page</title>
-   
-	<!--Bootsrap 4 CDN-->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    
-    <!--Fontawesome CDN-->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-	<!--Custom styles-->
-	<link rel="stylesheet" type="text/css" href="styles.css">
-    <style>
-        /* Made with love by Mutiullah Samim*/
-
-@import url('https://fonts.googleapis.com/css?family=Numans');
-
-html,body{
-background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
-background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Numans', sans-serif;
-}
-
-.container{
-height: 100%;
-align-content: center;
-}
-
-.card{
-height: 370px;
-margin-top: auto;
-margin-bottom: auto;
-width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
-}
-
-.social_icon span{
-font-size: 60px;
-margin-left: 10px;
-color: #FFC312;
-}
-
-.social_icon span:hover{
-color: white;
-cursor: pointer;
-}
-
-.card-header h3{
-color: white;
-}
-
-.social_icon{
-position: absolute;
-right: 20px;
-top: -45px;
-}
-
-.input-group-prepend span{
-width: 50px;
-background-color: #FFC312;
-color: black;
-border:0 !important;
-}
-
-input:focus{
-outline: 0 0 0 0  !important;
-box-shadow: 0 0 0 0 !important;
-
-}
-
-.remember{
-color: white;
-}
-
-.remember input
-{
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
-}
-
-.login_btn{
-color: black;
-background-color: #FFC312;
-width: 100px;
-}
-
-.login_btn:hover{
-color: black;
-background-color: white;
-}
-
-.links{
-color: white;
-}
-
-.links a{
-margin-left: 4px;
-}
-    </style>
+    <title>Login</title>
 </head>
 <body>
-<div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div class="card-header">
-				<h3>Sign In</h3>
-				<div class="d-flex justify-content-end social_icon">
-					<span><i class="fab fa-facebook-square"></i></span>
-					<span><i class="fab fa-google-plus-square"></i></span>
-					<span><i class="fab fa-twitter-square"></i></span>
-				</div>
-			</div>
-			<div class="card-body">
-				<form>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="username">
-						
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input type="password" class="form-control" placeholder="password">
-					</div>
-					<div class="row align-items-center remember">
-						<input type="checkbox">Remember Me
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Login" class="btn float-right login_btn">
-					</div>
-				</form>
-			</div>
-			<div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					Don't have an account?<a href="#">Sign Up</a>
-				</div>
-				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+    <section class="vh-100" style="background-color: #9A616D;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+              <div class="card" style="border-radius: 1rem;">
+                <div class="row g-0">
+                  <div class="col-md-6 col-lg-5 d-none d-md-block">
+                    <img src="images/achombo1.jpg"
+                      alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                  </div>
+                  <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5 text-black">
+      
+                      <form>
+      
+                        <div class="d-flex align-items-center mb-3 pb-1">
+                          <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                          <span class="h1 fw-bold mb-0">Achombo PowerHouse</span>
+                        </div>
+      
+                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+      
+                        <div class="form-outline mb-4">
+                          <input type="email" id="form2Example17" class="form-control form-control-lg" />
+                          <label class="form-label" for="form2Example17">Email address</label>
+                        </div>
+      
+                        <div class="form-outline mb-4">
+                          <input type="password" id="form2Example27" class="form-control form-control-lg" />
+                          <label class="form-label" for="form2Example27">Password</label>
+                        </div>
+      
+                        <div class="pt-1 mb-4">
+                          <button class="btn btn-dark btn-lg btn-block" type="button">Login</button>
+                        </div>
+      
+                        <a class="small text-muted" href="#!">Forgot password?</a>
+                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="/checkout"
+                            style="color: #393f81;">Register here</a></p>
+                        <a href="#!" class="small text-muted">Terms of use.</a>
+                        <a href="#!" class="small text-muted">Privacy policy</a>
+                      </form>
+      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 </body>
 </html>
