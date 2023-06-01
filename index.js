@@ -4,12 +4,20 @@ const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const session = require("express-session");
 
-mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "Oluwababa1",
-    database: "my_db"
-})
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'PObox69Kumba',
+    database: 'my_db',
+  });
+  
+  // Connect to the database
+  db.connect((err) => {
+    if (err) {
+      throw err;
+    }
+    console.log('Connected to the database...');
+  });
 
 const app = new express();
 app.use(express.static('public'));
@@ -37,14 +45,7 @@ function calculateTotal(cart, req){
 }
 
 app.get('/', (req, res)=>{
-    var connect = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "Oluwababa1",
-        database: "my_db"
-    })
-
-    connect.query("SELECT * FROM menu", (err, result)=>{
+        db.query("SELECT * FROM menu", (err, result)=>{
         res.render("pages/index", {result: result})
     })
    
@@ -58,7 +59,7 @@ app.post('/addToCart', (req, res, next)=>{
     var image = req.body.image;
     var menuItem = {id:id, name:name, price:price, quantity:quantity, image:image };
 
-    // var cart = new Cart(req.session.cart ? req.session.cart : []);
+    
 
     if(req.session.cart){
         var cart = req.session.cart;
@@ -68,12 +69,9 @@ app.post('/addToCart', (req, res, next)=>{
      } else {
         req.session.cart = [menuItem];
         var cart = req.session.cart;
-       // console.log("You visited this page " + req.session.page_views + " times");
+       
      }
- 
-     //console.log(req.session)
-
-    
+     
     calculateTotal(cart, req);
 
     res.redirect("/cart");
@@ -152,19 +150,19 @@ app.post("/place_order", (req, res)=>{
     var date = new Date();
     var item_ids = "";
 
-    var con = mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "Oluwababa1",
-        database: "my_db"
-    });
+    // var con = mysql.createConnection({
+    //     host: "localhost",
+    //     user: "root",
+    //     password: "PObox69Kumba",
+    //     database: "my_db"
+    // });
 
     var cart = req.session.cart;
     for(let i=0; i<cart.lenght; i++){
         item_ids = item_ids + " " + cart[i].id;
     }
 
-    con.connect((err)=>{
+    db.connect((err)=>{
         if(err){
             console.log(err);
         } else {
@@ -190,6 +188,66 @@ app.get("/payment", (req, res)=>{
 
 app.get("/login", (req, res)=>{
     res.render("pages/signin")
+})
+
+app.get("/register", (req, res)=>{
+    res.render("pages/register");
+});
+
+app.get('/signinError', (req, res)=>{
+    res.render('pages/signinError')
+})
+
+app.get('/loggedIn', (req, res)=>{
+    var connect = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "PObox69Kumba",
+        database: "my_db"
+    })
+
+    connect.query("SELECT * FROM menu", (err, result)=>{
+        if(req.session.loggedIn) {
+            // console.log(result)
+            res.render('pages/loggedIn', {username: req.session.username, result: result});
+        } else {
+            res.redirect('/');
+        }
+});
+});
+
+app.post('/register', (req, res)=>{
+    const { username, password } = req.body;
+  const user = { username, password };
+
+  db.query('INSERT INTO customers SET ?', user, (err) => {
+    if (err) {
+      throw err;
+    }
+    res.redirect('/login');
+  });
+});
+
+app.post('/login', (req, res)=>{
+    const { username, password } = req.body;
+
+  db.query(
+    'SELECT * FROM customers WHERE username = ? AND password = ?',
+    [username, password],
+    (err, results) => {
+      if (err) {
+        throw err;
+      }
+
+      if (results.length === 1) {
+        req.session.loggedIn = true;
+        req.session.username = username;
+        res.redirect('/loggedIn');
+      } else {
+        res.redirect('/signinError');
+      }
+    }
+  );
 })
 
 
