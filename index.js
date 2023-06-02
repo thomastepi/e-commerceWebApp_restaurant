@@ -150,13 +150,6 @@ app.post("/place_order", (req, res)=>{
     var date = new Date();
     var item_ids = "";
 
-    // var con = mysql.createConnection({
-    //     host: "localhost",
-    //     user: "root",
-    //     password: "PObox69Kumba",
-    //     database: "my_db"
-    // });
-
     var cart = req.session.cart;
     for(let i=0; i<cart.lenght; i++){
         item_ids = item_ids + " " + cart[i].id;
